@@ -1,4 +1,5 @@
 from fastmcp import FastMCP
+from datetime import datetime
 
 mcp = FastMCP("test-remote-server")
 
@@ -7,10 +8,16 @@ def add_numbers(a: int, b: int) -> int:
     return a + b
 
 @mcp.tool()
-def greet(name: str):
+def current_time() -> str:
+    return datetime.now().isoformat()
+
+@mcp.tool()
+def greet(name: str) -> str:
     return f"Hello {name}"
 
-# Start server
+# 👇 IMPORTANT for cloud
+app = mcp
+
 if __name__ == "__main__":
     mcp.run(
         transport="http",
