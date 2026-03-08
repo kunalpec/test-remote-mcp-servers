@@ -96,7 +96,7 @@ def main():
     print("🚀 Starting Test MCP Server...")
     mcp.run(
         transport="http",
-        host="localhost",
+        host="0.0.0.0",
         port=8000
     )
 
